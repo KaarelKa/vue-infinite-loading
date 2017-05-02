@@ -28,14 +28,9 @@
    * @return {DOM}        the first scroll parent
    */
 
-   /* eslint no-console: ["error", { allow: ["warn", "error"] }] */
   function getScrollParent(elm) {
-    console.warn(elm);
-    console.error(elm);
     if (elm.tagName === 'BODY') {
       return window;
-    } else if (['scroll', 'auto'].indexOf(getComputedStyle(elm).overflowY) > -1) {
-      return elm;
     } else if (['scroll', 'auto'].indexOf(getComputedStyle(elm).overflowX) > -1) {
       return elm;
     } else if (elm.hasAttribute('infinite-wrapper') || elm.hasAttribute('data-infinite-wrapper')) {
@@ -53,14 +48,11 @@
   function getCurrentDistance(elm, dir) {
     let distance;
     const scrollTop = isNaN(elm.scrollTop) ? elm.pageYOffset : elm.scrollTop;
-    const scrollRight = isNaN(elm.scrollRight) ? elm.pageXOffset : elm.scrollRight;
+    const scrollLeft = isNaN(elm.scrollLeft) ? elm.pageXOffset : elm.scrollLeft;
     if (dir === 'top') {
       distance = scrollTop;
     } else if (dir === 'right') {
-      const scrollElmWidth = elm === window ?
-                              window.innerWidth :
-                              elm.getBoundingClientRect().width;
-      distance = this.$el.offsetLeft - scrollRight - scrollElmWidth - (elm.offsetLeft || 0);
+      distance = scrollLeft;
     } else {
       const scrollElmHeight = elm === window ?
                               window.innerHeight :
