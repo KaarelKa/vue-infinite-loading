@@ -31,7 +31,7 @@
   function getScrollParent(elm) {
     if (elm.tagName === 'BODY') {
       return window;
-    } else if (['scroll', 'auto'].indexOf(getComputedStyle(elm).overflowX) > -1) {
+    } else if (['scroll', 'auto'].indexOf(getComputedStyle(elm).overflowY) > -1) {
       return elm;
     } else if (elm.hasAttribute('infinite-wrapper') || elm.hasAttribute('data-infinite-wrapper')) {
       return elm;
@@ -45,22 +45,21 @@
    * @param  {String} dir   calculate direction
    * @return {Number}     distance
    */
-  function getCurrentDistance(elm, dir) {
-    let distance;
-    const scrollTop = isNaN(elm.scrollTop) ? elm.pageYOffset : elm.scrollTop;
-    const scrollLeft = isNaN(elm.scrollLeft) ? elm.pageXOffset : elm.scrollLeft;
-    if (dir === 'top') {
-      distance = scrollTop;
-    } else if (dir === 'right') {
-      distance = scrollLeft;
-    } else {
-      const scrollElmHeight = elm === window ?
-                              window.innerHeight :
-                              elm.getBoundingClientRect().height;
-
-      distance = this.$el.offsetTop - scrollTop - scrollElmHeight - (elm.offsetTop || 0);
-    }
-    return distance;
+  function getCurrentDistance(elm) {
+    // const scrollTop = isNaN(elm.scrollTop) ? elm.pageYOffset : elm.scrollTop;
+    // const scrollLeft = isNaN(elm.scrollLeft) ? elm.pageXOffset : elm.scrollLeft;
+    // if (dir === 'top') {
+    //   distance = scrollTop;
+    // } else if (dir === 'right') {
+    //   distance = scrollLeft;
+    // } else {
+    //   const scrollElmHeight = elm === window ?
+    //                           window.innerHeight :
+    //                           elm.getBoundingClientRect().height;
+    //
+    //   distance = this.$el.offsetTop - scrollTop - scrollElmHeight - (elm.offsetTop || 0);
+    // }
+    return elm.pageXOffset;
   }
 
   export default {
