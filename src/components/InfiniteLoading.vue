@@ -28,6 +28,7 @@
    * @return {DOM}        the first scroll parent
    */
   function getScrollParent(elm) {
+    console.log(elm)
     if (elm.tagName === 'BODY') {
       return window;
     } else if (['scroll', 'auto'].indexOf(getComputedStyle(elm).overflowY) > -1) {
