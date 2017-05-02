@@ -45,21 +45,21 @@
    * @param  {String} dir   calculate direction
    * @return {Number}     distance
    */
-  function getCurrentDistance(elm) {
-    // const scrollTop = isNaN(elm.scrollTop) ? elm.pageYOffset : elm.scrollTop;
-    // const scrollLeft = isNaN(elm.scrollLeft) ? elm.pageXOffset : elm.scrollLeft;
-    // if (dir === 'top') {
-    //   distance = scrollTop;
-    // } else if (dir === 'right') {
-    //   distance = scrollLeft;
-    // } else {
-    //   const scrollElmHeight = elm === window ?
-    //                           window.innerHeight :
-    //                           elm.getBoundingClientRect().height;
-    //
-    //   distance = this.$el.offsetTop - scrollTop - scrollElmHeight - (elm.offsetTop || 0);
-    // }
-    return elm.pageXOffset;
+  function getCurrentDistance(elm, dir) {
+    let distance ;
+    const scrollTop = isNaN(elm.scrollTop) ? elm.pageYOffset : elm.scrollTop;
+    if (dir === 'top') {
+      distance = scrollTop;
+    } else if (dir === 'right') {
+      distance = elm.pageXOffset;
+    } else {
+      const scrollElmHeight = elm === window ?
+                              window.innerHeight :
+                              elm.getBoundingClientRect().height;
+
+      distance = this.$el.offsetTop - scrollTop - scrollElmHeight - (elm.offsetTop || 0);
+    }
+    return distance;
   }
 
   export default {
