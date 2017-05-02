@@ -27,8 +27,11 @@
    * @param  {DOM} elm    the element which find scorll parent
    * @return {DOM}        the first scroll parent
    */
+
+   /* eslint no-console: ["error", { allow: ["warn", "error"] }] */
   function getScrollParent(elm) {
-    console.log(elm)
+    console.warn(elm);
+    console.error(elm);
     if (elm.tagName === 'BODY') {
       return window;
     } else if (['scroll', 'auto'].indexOf(getComputedStyle(elm).overflowY) > -1) {
@@ -92,7 +95,7 @@
       spinner: String,
       direction: {
         type: String,
-        default: 'bottom',
+        default: 'right',
       },
     },
     mounted() {
