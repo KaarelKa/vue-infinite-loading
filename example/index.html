@@ -37,10 +37,10 @@
 <body>
   <div id="app">
     <div class="container-outer">
-       <div class="container-inner">
-         <a class="example-list-item" v-for="item in list" v-text="item"></a>
-         <infinite-loading :on-infinite="onInfinite" direction="right" :distance="1000" ref="infiniteLoading"></infinite-loading>
-       </div>
+      <div class="container-inner infinite-wrapper">
+        <a class="example-list-item" v-for="item in list" v-text="item"></a>
+        <infinite-loading :on-infinite="onInfinite" direction="right" :distance="10000" ref="infiniteLoading"></infinite-loading>
+      </div>
     </div>
   </div>
   <script>
