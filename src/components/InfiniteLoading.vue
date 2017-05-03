@@ -38,7 +38,7 @@
     } else if (elm.hasAttribute('infinite-wrapper') || elm.hasAttribute('data-infinite-wrapper')) {
       return elm;
     }
-    return elm;
+    return getScrollParent(elm.parentNode);
   }
 
   /**
@@ -53,7 +53,7 @@
     if (dir === 'top') {
       distance = scrollTop;
     } else if (dir === 'right') {
-      distance = elm.getBoundingClientRect().width - elm.pageXOffset;
+      distance = elm.getBoundingClientRect().width - this.$el.offsetLeft;
     } else {
       const scrollElmHeight = elm === window ?
                               window.innerHeight :
