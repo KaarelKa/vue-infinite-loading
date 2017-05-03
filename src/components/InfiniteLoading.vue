@@ -54,10 +54,10 @@
     if (dir === 'top') {
       distance = scrollTop;
     } else if (dir === 'right') {
-      const scrollElmWidth = elm === window ?
-                              window.innerWidth :
-                              elm.getBoundingClientRect().width;
-      distance = scrollElmWidth - scrollLeft;
+      const scrollElmWidth = elm[0].childNodes[1].clientWidth ?
+                              elm[0].childNodes[1].clientWidth : window.innerWidth;
+                              // elm.childNodes[0].getBoundingClientRect().width;
+      distance = scrollElmWidth - scrollLeft - elm.offsetWidth;
       // elm.getBoundingClientRect().width - this.$el.offsetLeft;
       // const scrollElmWidth = elm === window ?
       //                        window.innerWidth :
