@@ -31,12 +31,14 @@
   function getScrollParent(elm) {
     if (elm.tagName === 'BODY') {
       return window;
+    } else if (['scroll', 'auto'].indexOf(getComputedStyle(elm).overflowY) > -1) {
+      return elm;
     } else if (['scroll', 'auto'].indexOf(getComputedStyle(elm).overflowX) > -1) {
       return elm;
     } else if (elm.hasAttribute('infinite-wrapper') || elm.hasAttribute('data-infinite-wrapper')) {
       return elm;
     }
-    return getScrollParent(elm.parentNode);
+    return elm;
   }
 
   /**
@@ -48,11 +50,10 @@
   function getCurrentDistance(elm, dir) {
     let distance;
     const scrollTop = isNaN(elm.scrollTop) ? elm.pageYOffset : elm.scrollTop;
-    const scrollLeft = isNaN(elm.scrollLeft) ? elm.pageXOffset : elm.scrollRight;
     if (dir === 'top') {
       distance = scrollTop;
     } else if (dir === 'right') {
-      distance = scrollLeft;
+      distance = elm.getBoundingClientRect().width - elm.pageXOffset;
     } else {
       const scrollElmHeight = elm === window ?
                               window.innerHeight :
