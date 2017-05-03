@@ -57,7 +57,7 @@
       const scrollElmWidth = elm === window ?
                               window.innerWidth :
                               elm.getBoundingClientRect().width;
-      distance = scrollElmWidth - scrollLeft - elm.offsetWidth;
+      distance = scrollElmWidth - scrollLeft;
       // elm.getBoundingClientRect().width - this.$el.offsetLeft;
       // const scrollElmWidth = elm === window ?
       //                        window.innerWidth :
